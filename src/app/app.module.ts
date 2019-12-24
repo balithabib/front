@@ -6,10 +6,12 @@ import {RoutingModule} from './routing/routing.module';
 import {MaterialModule} from './material/material.module';
 import {AuthModule} from './auth/auth.module';
 import {ProductModule} from './product/product.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
