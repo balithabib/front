@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RoutingModule} from './routing/routing.module';
 import {MaterialModule} from './material/material.module';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {MaterialModule} from './material/material.module';
     BrowserModule,
     RoutingModule,
     MaterialModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
