@@ -1,0 +1,64 @@
+mat-card {
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  margin: 5px auto;
+  justify-content: center;
+}
+
+.square {
+  width: 100%;
+  height: 5px;
+  background: #069;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.btn_hidden {
+  visibility: hidden;
+}
+
+.btn_visible {
+  visibility: visible;
+}
+
+
+.card {
+  border: 1px solid #777777;
+  padding: 10%;
+}
+
+
+.text {
+  float: left;
+  word-break: break-word;
+}
+
+.productTitle {
+  float: left;
+  display: block;
+  margin-bottom: 4px;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.name {
+  float: left;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.price {
+  color: rgb(236, 0, 140) !important;
+  float: right;
+}
