@@ -7,6 +7,7 @@ import {MaterialModule} from './material/material.module';
 import {AuthModule} from './auth/auth.module';
 import {ProductModule} from './product/product.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RoutingModule,
     MaterialModule,
     AuthModule,
-    ProductModule
+    ProductModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
