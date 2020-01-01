@@ -8,10 +8,10 @@
   </div>
   <div [ngClass]="styleCss" *ngFor="let product of products;let status = hidden">
     <mat-card (mouseover)="status='visible'" (mouseout)="status = 'hidden'" class="card">
-      <mat-card-header [routerLink]=[product.id] class="container">
-        <span class="name">{{product.name}}</span>
-        <span class="price"><p class="price">{{product.price}}</p></span>
-      </mat-card-header>
+      <div class="productHeader" [routerLink]=[product.id]>
+        <span class="productTitle">{{product.name}}</span>
+        <span class="productPrice"><p class="price">{{product.price}}</p></span>
+      </div>
 
       <img mat-card-image class="thumbnail"
            [src]="'data:image/jpg;base64,'+product.thumbnails[0]"
