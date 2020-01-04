@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   {path: 'auth', component: AuthComponent},
   {path: 'products', component: ProductListComponent},
   {path: 'products/:id', component: ProductComponent},
-  {path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: '', redirectTo: 'products', pathMatch: 'full'},
   {path: '**', redirectTo: '/not-found'}
 ];

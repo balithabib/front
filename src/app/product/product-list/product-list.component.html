@@ -6,8 +6,8 @@
     <button (click)="onStyle(4)" mat-mini-fab>4</button>
     <button (click)="onStyle(6)" mat-mini-fab>6</button>
   </div>
-  <div [ngClass]="styleCss" *ngFor="let product of products;let status = hidden">
-    <mat-card (mouseover)="status='visible'" (mouseout)="status = 'hidden'" class="card">
+  <div [ngClass]="styleCss" *ngFor="let product of products;let status = false">
+    <mat-card (mouseover)="status=true" (mouseout)="status = false" class="card">
       <div class="productHeader" [routerLink]=[product.id]>
         <span class="productTitle">{{product.name}}</span>
         <span class="productPrice"><p class="price">{{product.price}}</p></span>
@@ -16,9 +16,10 @@
       <img mat-card-image class="thumbnail"
            [src]="'data:image/jpg;base64,'+product.thumbnails[0]"
            [routerLink]=[product.id]>
-
       <mat-card-actions class="center">
-        <button (click)="OnAdd(product)" mat-mini-fab>+</button>
+        <button (click)="OnAdd(product)"
+                mat-mini-fab>+
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -12,7 +12,6 @@ export class ProductListComponent implements OnInit {
   isAuth = false;
   products = [];
   styleCss: object = {'col-lg-3': true};
-  selectedProducts = {};
 
   constructor(private productService: ProductService) {
     setTimeout(() => {
@@ -29,14 +28,6 @@ export class ProductListComponent implements OnInit {
       },
       error => console.log(error)
     );
-
-    this.productService.selectedProducts$.subscribe((selectedProducts) => {
-      this.selectedProducts = selectedProducts.reduce((acc, current) => {
-        // @ts-ignore
-        acc[current] = true;
-        return acc;
-      }, {});
-    });
   }
 
   OnAdd(productPreview: ProductPreview) {

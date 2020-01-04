@@ -1,0 +1,50 @@
+.image {
+  width: 20%;
+  height: 20%;
+}
+
+
+.productPrice {
+  color: rgb(236, 0, 140) !important;
+  float: right;
+}
+
+.productTitle {
+  display: block;
+  max-height: 20px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  font-family: VP Next, sans-serif;
+}
+
+.productHeader {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  min-height: 85px;
+}
+
+.centerButton {
+  display: flex;
+}
+
+
+table {
+  width: 50%;
+  justify-content: center;
+  margin: auto;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.x {
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+}

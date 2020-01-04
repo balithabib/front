@@ -7,6 +7,7 @@ mat-card {
   width: 50%;
   height: 100%;
   margin: 5px auto;
+  overflow: hidden;
   justify-content: center;
 }
 
@@ -71,5 +72,13 @@ mat-card {
   -ms-flex-pack: justify;
   justify-content: space-between;
   min-height: 85px;
-  border-bottom: 1px solid
+}
+
+
+.visible{
+  visibility: visible;
+}
+
+.hidden{
+  visibility: hidden;
 }

@@ -6,4 +6,5 @@ export class ProductPreview {
   price: string;
   comment: string;
   thumbnails: string;
+  amount: number;
 }

@@ -44,7 +44,8 @@ export class ProductService {
               color: productJson.color,
               price: productJson.price,
               comment: productJson.comment,
-              thumbnails: productJson.thumbnails
+              thumbnails: productJson.thumbnails,
+              amount: 1
             };
           });
         }), tap((products) => {
