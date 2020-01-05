@@ -11,11 +11,18 @@ import {Subscription} from 'rxjs';
 })
 export class AuthComponent implements OnInit {
   authStatus: boolean;
+  image;
 
   constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
+    this.authService.getImageBackground().then(
+      (value: any) => {
+        this.image = 'data:image/jpg;base64,' + value;
+        console.log('value : ', this.image);
+      }
+    );
   }
 }
 

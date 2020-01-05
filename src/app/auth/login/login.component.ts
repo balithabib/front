@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {passwordMatchValidator} from '../auth.component';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+
+const NOT_FOUND = 'NOT_FOUND';
+const FOUND = 'FOUND';
+const CREATED = 'CREATED';
 
 
 @Component({
@@ -16,6 +18,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class LoginComponent implements OnInit {
   reactiveFormLogin: FormGroup;
   hide = true;
+  status: string;
 
 
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private httpClient: HttpClient) {
@@ -32,11 +35,17 @@ export class LoginComponent implements OnInit {
   onLogin(type: string) {
     this.authService.singIn(this.reactiveFormLogin.value, type).then(
       (user: any) => {
-        if (200 === user.status) {
-          console.log('Coll');
+        if (FOUND === user.code) {
+          this.status = 'User is found';
+          console.log(FOUND);
+          this.router.navigate(['dashboard']);
+        } else if (CREATED === user.code) {
+          this.status = 'User is created';
+          console.log(CREATED);
           this.router.navigate(['dashboard']);
         } else {
-          console.log('Kawed');
+          this.status = 'User is not found';
+          console.log(NOT_FOUND);
         }
       }
     );

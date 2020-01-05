@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   url = 'http://localhost:3000/auth/';
-  user: any = {status: 404, access_token: ''};
+  user: any = {code: 'NOT_FOUND', access_token: ''};
   isAuth = false;
+  image;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -33,5 +35,23 @@ export class AuthService {
 
   singOut() {
     this.isAuth = false;
+  }
+
+  async getImageBackground() {
+    return await new Promise(((resolve) => {
+      this.httpClient.get(this.url + 'get_background').subscribe(
+        (val: any) => {
+          console.log('POST call successful value returned in body : ', val);
+          this.image = val.data;
+          resolve(this.image);
+        },
+        (response) => {
+          console.log('POST call in error', response);
+        },
+        () => {
+          console.log('The POST observable is now completed.');
+        }
+      );
+    }));
   }
 }
