@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
   isAuth = false;
   products = [];
   styleCss: object = {'col-lg-3': true};
+  length = 0;
 
   constructor(private productService: ProductService) {
     setTimeout(() => {
@@ -32,6 +33,7 @@ export class ProductListComponent implements OnInit {
 
   OnAdd(productPreview: ProductPreview) {
     this.productService.addToDashboard(productPreview);
+    this.length++;
   }
 
   onStyle(col: number) {

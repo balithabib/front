@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  url = 'http://localhost:3000/auth/';
+  URL = 'http://localhost:3000/auth/';
   user: any = {code: 'NOT_FOUND', access_token: ''};
   isAuth = false;
   image;
@@ -17,7 +17,7 @@ export class AuthService {
   async singIn(body: object, type: string) {
     return await new Promise(((resolve) => {
       this.isAuth = true;
-      this.httpClient.post(this.url + type, body).subscribe(
+      this.httpClient.post(this.URL + type, body).subscribe(
         (val) => {
           console.log('POST call successful value returned in body : ', val);
           this.user = val;
@@ -39,7 +39,7 @@ export class AuthService {
 
   async getImageBackground() {
     return await new Promise(((resolve) => {
-      this.httpClient.get(this.url + 'get_background').subscribe(
+      this.httpClient.get(this.URL + 'get_background').subscribe(
         (val: any) => {
           console.log('POST call successful value returned in body : ', val);
           this.image = val.data;
@@ -53,5 +53,14 @@ export class AuthService {
         }
       );
     }));
+  }
+
+  async getById(id: number) {
+    console.log(this.URL + 'get/' + id);
+    return await new Promise((resolve) => {
+      this.httpClient.get(this.URL + 'get/' + id).subscribe(value => {
+        resolve(value);
+      });
+    });
   }
 }

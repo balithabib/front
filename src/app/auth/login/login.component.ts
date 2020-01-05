@@ -34,15 +34,15 @@ export class LoginComponent implements OnInit {
 
   onLogin(type: string) {
     this.authService.singIn(this.reactiveFormLogin.value, type).then(
-      (user: any) => {
-        if (FOUND === user.code) {
+      (result: any) => {
+        if (FOUND === result.code) {
           this.status = 'User is found';
           console.log(FOUND);
-          this.router.navigate(['dashboard']);
-        } else if (CREATED === user.code) {
+          this.router.navigate(['dashboard/:', {id: result.user.id}]);
+        } else if (CREATED === result.code) {
           this.status = 'User is created';
           console.log(CREATED);
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['dashboard/:', {id: result.user.id}]);
         } else {
           this.status = 'User is not found';
           console.log(NOT_FOUND);
