@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {ProductPreview} from '../product/models/product-preview';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ export class ProductListComponent implements OnInit {
   styleCss: object = {'col-lg-3': true};
   length = 0;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private route: Router) {
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
@@ -22,18 +23,18 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('init');
-
     this.productService.getAll().subscribe(
       products => {
         this.products = products;
       },
       error => console.log(error)
     );
+    this.length = this.productService.getLength();
   }
 
   OnAdd(productPreview: ProductPreview) {
     this.productService.addToDashboard(productPreview);
-    this.length++;
+    this.length = this.productService.getLength();
   }
 
   onStyle(col: number) {
@@ -59,5 +60,9 @@ export class ProductListComponent implements OnInit {
         break;
       }
     }
+  }
+
+  onDashboard() {
+    this.route.navigate(['dashboard']);
   }
 }

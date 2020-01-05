@@ -10,7 +10,7 @@ import {map, tap} from 'rxjs/operators';
 export class ProductService {
   products: ProductPreview[] = null;
   URL = 'http://localhost:3000/product/';
-
+  length = 0;
   selectedProducts = new BehaviorSubject<ProductPreview[]>([]);
   selectedProducts$ = this.selectedProducts.asObservable();
 
@@ -18,15 +18,13 @@ export class ProductService {
   }
 
   addToDashboard(productPreview: ProductPreview) {
-    let newProduct = this.selectedProducts.value.filter((alreadyProduct) => {
-      if (alreadyProduct.id !== productPreview.id) {
-        return alreadyProduct;
-      }
-    });
-    if (newProduct.length === this.selectedProducts.value.length) {
+    const test = this.selectedProducts.value.find(product => product.id === productPreview.id);
+    if (!test) {
+      let newProduct = this.selectedProducts.value;
       newProduct = [...newProduct, productPreview];
+      this.selectedProducts.next(newProduct);
+      this.length++;
     }
-    this.selectedProducts.next(newProduct);
   }
 
   getAll(): Observable<ProductPreview[]> {
@@ -62,5 +60,9 @@ export class ProductService {
         resolve(value);
       });
     });
+  }
+
+  getLength() {
+    return this.length;
   }
 }
