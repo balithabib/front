@@ -1,9 +1,12 @@
+<button mat-mini-fab [ngStyle]="{'background-color':getStatus()}">
+  <mat-icon>favorite</mat-icon>
+</button>
 <button mat-raised-button color="primary"
         matBadge="{{length}}"
         matBadgePosition="before"
         matBadgeColor="accent"
         style="float: right" (click)="onDashboard()">
-  Panier
+  Dashboard
 </button>
 <div class="container">
   <div class="center">

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +15,17 @@ export class AuthService {
 
   async singIn(body: object, type: string) {
     return await new Promise(((resolve) => {
-      this.isAuth = true;
       this.httpClient.post(this.URL + type, body).subscribe(
         (val) => {
           console.log('POST call successful value returned in body : ', val);
           this.user = val;
+          this.isAuth = true;
           resolve(this.user);
         },
         (response) => {
+          this.user = {code: 'NOT_FOUND'};
           console.log('POST call in error', response);
+          resolve(this.user);
         },
         () => {
           console.log('The POST observable is now completed.');
@@ -55,12 +56,17 @@ export class AuthService {
     }));
   }
 
-  async getById(id: number) {
-    console.log(this.URL + 'get/' + id);
+  async getById(id) {
+    console.log(this.URL + 'profile');
+    const headers = {headers: new HttpHeaders({Authorization: 'Bearer ' + id})};
     return await new Promise((resolve) => {
-      this.httpClient.get(this.URL + 'get/' + id).subscribe(value => {
+      this.httpClient.get(this.URL + 'profile', headers).subscribe(value => {
         resolve(value);
       });
     });
+  }
+
+  getStatus() {
+    return this.isAuth;
   }
 }

@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
         if (FOUND === result.code) {
           this.status = 'User is found';
           console.log(FOUND);
-          this.router.navigate(['dashboard/:', {id: result.user.id}]);
+          this.router.navigate(['dashboard/:', {id: result.access_token}]);
         } else if (CREATED === result.code) {
           this.status = 'User is created';
           console.log(CREATED);
-          this.router.navigate(['dashboard/:', {id: result.user.id}]);
+          this.router.navigate(['dashboard/:', {id: result.user.access_token}]);
         } else {
           this.status = 'User is not found';
           console.log(NOT_FOUND);

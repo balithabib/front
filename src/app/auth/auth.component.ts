@@ -20,12 +20,12 @@ export class AuthComponent implements OnInit {
     this.authService.getImageBackground().then(
       (value: any) => {
         this.image = 'data:image/jpg;base64,' + value;
-        console.log('value : ', this.image);
       }
     );
   }
 }
 
+// to use.
 export const passwordMatchValidator = (controlNameToCompare: string): ValidatorFn | null => {
   return (c: AbstractControl): ValidationErrors | null => {
     if (c.value === null || c.value.length === 0) {
