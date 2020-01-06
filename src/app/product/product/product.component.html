@@ -1,32 +1,33 @@
 <div class="divCenterFlex">
-  <div class="divCenter">
-    <img [src]="'data:image/jpg;base64,'+defaultImg" class="imgCenter">
-
+  <mat-card class="col-lg-6">
+    <div class="divCenter1">
+      <img [src]="'data:image/jpg;base64,'+(defaultImg?defaultImg:product.thumbnails[0])" class="imgCenter">
+    </div>
     <div [ngClass]="{divCenter1: product.thumbnails.length <= 5, divScroll: product.thumbnails.length > 5}">
       <img class="imgSmall"
            *ngFor="let thumbnail of product.thumbnails"
            [src]="'data:image/jpg;base64,'+thumbnail"
            (mouseover)="OnOver(thumbnail)">
     </div>
-  </div>
+  </mat-card>
 
-  <div class="divCenter">
-    <h1>{{product.name}}</h1>
-    <h3 [ngStyle]="{color: getColor()}">En stock ! Plus de {{product.stock}} articles disponible en cours !</h3>
+  <mat-card class="col-lg-6">
+    <mat-card-title>
+      <span>{{product.name}}</span>
+      <h3 [ngStyle]="{color: getColor()}">En stock ! Plus de {{product.stock}} articles disponible en cours !</h3>
+    </mat-card-title>
+    <mat-card-content>
+      <p>Les points forts :</p>
+      <div>
+        <ul>
+          <li *ngFor="let op of product.comment">{{op}}</li>
+        </ul>
+      </div>
 
-    <p>Les points forts :</p>
-    <div>
-      <ul>
-        <li *ngFor="let op of product.comment">{{op}}</li>
-      </ul>
-    </div>
+      <p>{{product.color}}</p>
+      <p>{{product.price}}</p>
+      <a routerLink="/products">Return in products list</a>
+    </mat-card-content>
+  </mat-card>
 
-    <p>{{product.color}}</p>
-    <p>{{product.price}}</p>
-    <a routerLink="/products">Return in products list</a>
-  </div>
 </div>
-
-<!--  <img class="imgSmall"
-           *ngFor="let thumbnail of product.thumbnails" [src]=thumbnail (mouseover)="OnOver(thumbnail)">
-    -->

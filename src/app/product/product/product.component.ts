@@ -27,7 +27,6 @@ export class ProductComponent implements OnInit {
     this.productService.getById(this.id).then(value => {
       this.product = value;
     });
-    this.defaultImg = this.product.thumbnails[0];
   }
 
   getColor() {
