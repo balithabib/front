@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         } else if (CREATED === result.code) {
           this.status = 'User is created';
           console.log(CREATED);
-          this.router.navigate(['dashboard/:', {id: result.user.access_token}]);
+          this.router.navigate(['dashboard/:', {id: result.access_token}]);
         } else {
           this.status = 'User is not found';
           console.log(NOT_FOUND);

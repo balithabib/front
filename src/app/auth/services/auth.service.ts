@@ -40,7 +40,7 @@ export class AuthService {
 
   async getImageBackground() {
     return await new Promise(((resolve) => {
-      this.httpClient.get(this.URL + 'get_background').subscribe(
+      this.httpClient.get(this.URL + 'background/get').subscribe(
         (val: any) => {
           console.log('POST call successful value returned in body : ', val);
           this.image = val.data;
