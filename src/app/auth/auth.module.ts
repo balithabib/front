@@ -9,6 +9,7 @@ import {RoutingModule} from '../routing/routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {AgmCoreModule} from '@agm/core';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent],
@@ -22,6 +23,7 @@ import {AgmCoreModule} from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB8HzBELxiE1aOyqsqKkAGDspL1UZwdIeA',
     }),
+    MDBBootstrapModule.forRoot(),
     MatGoogleMapsAutocompleteModule
   ],
   providers: [AuthService]

@@ -17,13 +17,13 @@
     <button (click)="onStyle(6)" mat-mini-fab>6</button>
   </div>
   <div [ngClass]="styleCss" *ngFor="let product of products;let status = false">
-    <mat-card (mouseover)="status=true" (mouseout)="status = false" class="card">
+    <mat-card (mouseover)="status=true" (mouseout)="status = false" class="product">
       <div class="productHeader" [routerLink]=[product.id]>
         <span class="productTitle">{{product.name}}</span>
         <span class="productPrice"><p class="price">{{product.price}}</p></span>
       </div>
 
-      <img mat-card-image class="thumbnail"
+      <img mat-card-image
            [src]="'data:image/jpg;base64,'+product.thumbnails[0]"
            [routerLink]=[product.id]>
       <mat-card-actions class="center">

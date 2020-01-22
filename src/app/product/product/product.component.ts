@@ -41,5 +41,4 @@ export class ProductComponent implements OnInit {
   OnOver(thumbnail: string) {
     this.defaultImg = thumbnail;
   }
-
 }

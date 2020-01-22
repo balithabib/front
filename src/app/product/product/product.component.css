@@ -9,6 +9,12 @@
   height: 10%;
 }
 
+.imgSmall:hover{
+  transform: scale(1.01);
+  box-shadow: 0 0 0.4em black;
+}
+
+
 .divCenter1 {
   display: flex;
   margin-left: auto;
