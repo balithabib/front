@@ -1,7 +1,7 @@
 <div class="divCenterFlex">
   <mat-card class="col-lg-6">
     <div class="divCenter1">
-      <img [src]="'data:image/jpg;base64,'+(defaultImg?defaultImg:product.thumbnails[0])" class="imgCenter">
+      <img [src]="'data:image/jpg;base64,'+defaultImg" class="imgCenter" *ngIf="defaultImg">
     </div>
     <div [ngClass]="{divCenter1: product.thumbnails.length <= 5, divScroll: product.thumbnails.length > 5}">
       <img class="imgSmall"

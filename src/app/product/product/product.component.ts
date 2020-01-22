@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     this.productService.getById(this.id).then(value => {
       this.product = value;
+      this.defaultImg = this.product.thumbnails[0];
     });
   }
 
