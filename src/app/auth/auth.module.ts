@@ -7,6 +7,8 @@ import {AuthService} from './services/auth.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RoutingModule} from '../routing/routing.module';
 import {HttpClientModule} from '@angular/common/http';
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent],
@@ -16,7 +18,11 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     RoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB8HzBELxiE1aOyqsqKkAGDspL1UZwdIeA',
+    }),
+    MatGoogleMapsAutocompleteModule
   ],
   providers: [AuthService]
 })

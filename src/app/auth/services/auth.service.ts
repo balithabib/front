@@ -57,13 +57,17 @@ export class AuthService {
   }
 
   async getById(id) {
-    console.log(this.URL + 'profile');
-    const headers = {headers: new HttpHeaders({Authorization: 'Bearer ' + id})};
-    return await new Promise((resolve) => {
-      this.httpClient.get(this.URL + 'profile', headers).subscribe(value => {
-        resolve(value);
+    if (this.isAuth) {
+      return this.user;
+    } else {
+      console.log(this.URL + 'profile/' + id);
+      const headers = {headers: new HttpHeaders({Authorization: 'Bearer ' + id})};
+      return await new Promise((resolve) => {
+        this.httpClient.get(this.URL + 'profile', headers).subscribe(value => {
+          resolve(value);
+        });
       });
-    });
+    }
   }
 
   getStatus() {

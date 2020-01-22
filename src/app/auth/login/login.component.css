@@ -4,21 +4,15 @@
   margin-left: auto;
   margin-right: auto;
   padding: 8%;
-  width: 70%;
+  background: rgba(255, 255, 255, .4);
 }
 
-.left {
-  float: left;
+.centerBtn {
+  justify-content: center;
+  margin: auto;
 }
-
-.right {
-  float: right;
-}
-
 
 .center {
-  width: 30%;
-  margin: 20% auto;
+  margin: auto;
   justify-content: center;
-  background: rgba(255, 255, 255, .5);
 }

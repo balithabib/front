@@ -1,38 +1,98 @@
-<div class="center">
-  <form class="example-container" [formGroup]="reactiveFormLogin">
-    <mat-form-field>
-      <input matInput placeholder="Enter your name" formControlName="name">
-    </mat-form-field>
+<div class="container">
+  <div class="col-lg-6">
+    <form class="example-container" [formGroup]="reactiveFormLogin">
+      <h2>Connexion</h2>
+      <label>Vous avez déjà un compte ? Connectez-vous ci-dessous.</label>
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" formControlName="email">
+        <mat-error *ngIf="email.invalid && (email.dirty||email.touched)">
+          <mat-error *ngIf="email.errors['required']">Email is required</mat-error>
+          <mat-error *ngIf="email.errors['email']">Email is not correct</mat-error>
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Enter your email" formControlName="email">
-      <mat-error *ngIf="email.invalid && (email.dirty||email.touched)">
-        <mat-error *ngIf="email.errors['required']">Email is required</mat-error>
-        <mat-error *ngIf="email.errors['email']">Email is not correct</mat-error>
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+               formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid && (password.dirty||password.touched)">
+          <mat-error *ngIf="password.errors['required']">Password is required</mat-error>
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
-             formControlName="password">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-      <mat-error *ngIf="password.invalid && (password.dirty||password.touched)">
-        <mat-error *ngIf="password.errors['required']">Password is required</mat-error>
-      </mat-error>
-    </mat-form-field>
+      <mat-card-actions class="centerBtn">
+        <button type="submit" (click)="onLogin()" [disabled]="reactiveFormLogin.invalid">Login
+        </button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <h3>{{status}}</h3>
+      </mat-card-footer>
+    </form>
+  </div>
+  <div class="col-lg-6">
+    <form class="example-container" [formGroup]="reactiveFormRegister">
+      <h2>S'inscrire à un compte gratuit</h2>
+      <mat-form-field>
+        <input matInput placeholder="Enter your name" formControlName="name">
+      </mat-form-field>
 
-    <mat-card-actions>
-      <span class="left"><button type="submit" (click)="onLogin('login')"
-                                 [disabled]="reactiveFormLogin.invalid">Login</button></span>
-      <span class="right"><button type="submit" (click)="onLogin('register')"
-                                  [disabled]="reactiveFormLogin.invalid">Register
-    </button></span>
-    </mat-card-actions>
-    <mat-card-footer>
-      <h3>{{status}}</h3>
-    </mat-card-footer>
-  </form>
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" formControlName="email">
+        <mat-error *ngIf="email.invalid && (email.dirty||email.touched)">
+          <mat-error *ngIf="email.errors['required']">Email is required</mat-error>
+          <mat-error *ngIf="email.errors['email']">Email is not correct</mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+               formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid && (password.dirty||password.touched)">
+          <mat-error *ngIf="password.errors['required']">Password is required</mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <label>Gender: </label>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-card>
+        <mat-card-title>Auto Parse Address</mat-card-title>
+        <mat-card-content>
+          <mat-search-google-maps-autocomplete appearance="outline"
+                                               country="de"
+                                               (onGermanAddressMapped)="onAutocompleteSelected($event)">
+          </mat-search-google-maps-autocomplete>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card-actions class="centerBtn">
+        <button type="submit" (click)="onRegister()" [disabled]="reactiveFormRegister.invalid">Register
+        </button>
+      </mat-card-actions>
+
+      <mat-card-footer>
+        <h3>{{status}}</h3>
+      </mat-card-footer>
+    </form>
+  </div>
 </div>
+
