@@ -28,10 +28,11 @@ export class ProductService {
   }
 
   getAll(): Observable<ProductPreview[]> {
+    console.log(this.URL + 'all');
     if (this.products) {
       return of(this.products);
     }
-    return (this.httpClient.get(this.URL + 'get_all') as Observable<any[]>)
+    return (this.httpClient.get(this.URL + 'all') as Observable<any[]>)
       .pipe(
         map((products) => {
           return products.map((productJson) => {
@@ -54,9 +55,9 @@ export class ProductService {
   }
 
   async getById(id: number) {
-    console.log(this.URL + 'get/' + id);
+    console.log(this.URL + 'one/' + id);
     return await new Promise((resolve) => {
-      this.httpClient.get(this.URL + 'get/' + id).subscribe(value => {
+      this.httpClient.get(this.URL + 'one/' + id).subscribe(value => {
         resolve(value);
       });
     });
