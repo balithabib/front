@@ -87,3 +87,18 @@ mat-card {
   transform: scale(1.02);
   box-shadow: 0 0 2em black;
 }
+
+.buttonAuth:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 1em deeppink;
+}
+
+.buttonDashboard:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 1em purple;
+}
+
+.buttonRound:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 1em hotpink;
+}

@@ -23,7 +23,6 @@
 }
 
 .divScroll {
-  width: 50%;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;

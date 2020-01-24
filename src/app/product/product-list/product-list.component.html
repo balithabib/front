@@ -1,20 +1,21 @@
-<button mat-mini-fab [ngStyle]="{'background-color':getStatus()}">
+<button mat-mini-fab class="buttonAuth" [ngStyle]="{'background-color':getStatus()}" [routerLink]="'/auth'">
   <mat-icon>favorite</mat-icon>
 </button>
 <button mat-raised-button color="primary"
         matBadge="{{length}}"
         matBadgePosition="before"
         matBadgeColor="accent"
+        class="buttonDashboard"
         style="float: right" (click)="onDashboard()">
   Dashboard
 </button>
 <div class="container">
   <div class="center">
-    <button (click)="onStyle(1)" mat-mini-fab>1</button>
-    <button (click)="onStyle(2)" mat-mini-fab>2</button>
-    <button (click)="onStyle(3)" mat-mini-fab>3</button>
-    <button (click)="onStyle(4)" mat-mini-fab>4</button>
-    <button (click)="onStyle(6)" mat-mini-fab>6</button>
+    <button (click)="onStyle(1)" mat-mini-fab class="buttonRound">1</button>
+    <button (click)="onStyle(2)" mat-mini-fab class="buttonRound">2</button>
+    <button (click)="onStyle(3)" mat-mini-fab class="buttonRound">3</button>
+    <button (click)="onStyle(4)" mat-mini-fab class="buttonRound">4</button>
+    <button (click)="onStyle(6)" mat-mini-fab class="buttonRound">6</button>
   </div>
   <div [ngClass]="styleCss" *ngFor="let product of products;let status = false">
     <mat-card (mouseover)="status=true" (mouseout)="status = false" class="product">
@@ -28,7 +29,7 @@
            [routerLink]=[product.id]>
       <mat-card-actions class="center">
         <button (click)="OnAdd(product)"
-                mat-mini-fab>+
+                mat-mini-fab class="buttonRound">+
         </button>
       </mat-card-actions>
     </mat-card>

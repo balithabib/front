@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params.id;
+    const id = this.route.snapshot.paramMap.get('id');
     this.authService.getById(id).then((value: any) => {
       this.user = value.user;
       console.log('user : ', this.user);
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   getTotalCost() {
     return String(
       this.products
-        .map(product => Number(product.price.replace('€', '.')))
+        .map(product => Number(product.price.replace('€', '.')) * product.amount)
         .reduce((acc, value) => acc + value, 0))
       .replace('.', '€');
   }

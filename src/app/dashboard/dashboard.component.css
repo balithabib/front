@@ -48,3 +48,8 @@ th.mat-sort-header-sorted {
   width: 20px;
   height: 20px;
 }
+
+.center{
+  justify-content: center;
+  margin: auto;
+}

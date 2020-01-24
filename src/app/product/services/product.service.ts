@@ -54,7 +54,7 @@ export class ProductService {
       );
   }
 
-  async getById(id: number) {
+  async getById(id: string) {
     console.log(this.URL + 'one/' + id);
     return await new Promise((resolve) => {
       this.httpClient.get(this.URL + 'one/' + id).subscribe(value => {
