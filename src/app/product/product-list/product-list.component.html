@@ -1,14 +1,3 @@
-<button mat-mini-fab class="buttonAuth" [ngStyle]="{'background-color':getStatus()}" [routerLink]="'/auth'">
-  <mat-icon>favorite</mat-icon>
-</button>
-<button mat-raised-button color="primary"
-        matBadge="{{length}}"
-        matBadgePosition="before"
-        matBadgeColor="accent"
-        class="buttonDashboard"
-        style="float: right" (click)="onDashboard()">
-  Dashboard
-</button>
 <div class="container">
   <div class="center">
     <button (click)="onStyle(1)" mat-mini-fab class="buttonRound">1</button>
@@ -19,17 +8,29 @@
   </div>
   <div [ngClass]="styleCss" *ngFor="let product of products;let status = false">
     <mat-card (mouseover)="status=true" (mouseout)="status = false" class="product">
+      <mat-card-title style="display: flex;margin: auto;justify-content: center"
+                      [ngStyle]="{'color':getInfoColor(product.id)}">{{getInfoStatus(product.id)}}</mat-card-title>
       <div class="productHeader" [routerLink]=[product.id]>
         <span class="productTitle">{{product.name}}</span>
-        <span class="productPrice"><p class="price">{{product.price}}</p></span>
+        <span class="productPrice"><p class="price">{{getPrice(product.price)}}</p></span>
       </div>
 
       <img mat-card-image
-           [src]="'data:image/jpg;base64,'+product.thumbnails[0]"
+           class="img imgZoom"
+           [src]="'data:image/jpg;base64,'+product.images[0]"
            [routerLink]=[product.id]>
-      <mat-card-actions class="center">
+      <mat-card-actions style="display: flex;margin: auto;justify-content: center">
+        <a class="col-lg-4 buttonRound" style="margin:auto;" (click)="addLove(product)" mat-mini-fab><i
+          class="material-icons">thumb_up</i>{{product.love}}
+        </a>
+        <a class="col-lg-4 buttonRound" style="margin:auto;" (click)="addBad(product)" mat-mini-fab><i
+          class="material-icons">thumb_down</i>{{product.bad}}
+        </a>
+        <a class="col-lg-4 buttonRound" style="margin:auto;" mat-mini-fab><i
+          class="material-icons">shopping_basket</i>{{product.buy}}</a>
+
         <button (click)="OnAdd(product)"
-                mat-mini-fab class="buttonRound">+
+                mat-mini-fab class="buttonRound" style="margin:auto;">+
         </button>
       </mat-card-actions>
     </mat-card>

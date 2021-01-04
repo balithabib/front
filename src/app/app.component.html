@@ -1,11 +1,40 @@
 <nav class="navbar-default">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a routerLink="products">Products</a></li>
-      <li routerLinkActive="active"><a routerLink="dashboard">Dashboard</a></li>
+      <ng-container *ngFor="let menuItem of menuItems">
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="[menuItem.path]">
+            <div *ngIf="menuItem.type; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock><i class="material-icons">{{menuItem.icon}}</i></ng-template>
+            <ng-template #elseBlock>
+              <i class="material-icons"
+                 matBadge="{{getLengthDashboard()}}"
+                 matBadgePosition="above after"
+                 matBadgeColor="primary"
+              >shopping_cart</i>
+            </ng-template>
+            <p>{{menuItem.title}}</p>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isAdmin()">
+        <li routerLinkActive="active" class="nav-item" *ngFor="let menuItem of adminMenu">
+          <a class="nav-link" [routerLink]="[menuItem.path]">
+            <i class="material-icons">{{menuItem.icon}}</i>
+            <p>{{menuItem.title}}</p>
+          </a>
+        </li>
+      </ng-container>
     </ul>
+
+    <button mat-mini-fab class="buttonAuth" [ngStyle]="{'background-color':getStatus()}">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <p style="float: right">{{visitors}}</p>
   </div>
 </nav>
+
+
 <div>
   <router-outlet></router-outlet>
 </div>

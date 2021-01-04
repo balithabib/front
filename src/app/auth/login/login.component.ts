@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 
 const NOT_FOUND = 'NOT_FOUND';
 const FOUND = 'FOUND';
@@ -21,11 +20,14 @@ export class LoginComponent implements OnInit {
   hide = true;
   status: string;
 
+  public latitude: number;
+  public longitude: number;
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private httpClient: HttpClient) {
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+
     this.reactiveFormLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -36,7 +38,8 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       gender: ['', Validators.required],
-      date: ['', Validators.required]
+      date: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 
@@ -47,14 +50,10 @@ export class LoginComponent implements OnInit {
         if (FOUND === result.code) {
           this.status = 'User is found';
           console.log(FOUND);
-          this.router.navigate(['dashboard/:', {id: result.access_token}]);
-        } else if (CREATED === result.code) {
-          this.status = 'User is created';
-          console.log(CREATED);
-          this.router.navigate(['dashboard/:', {id: result.access_token}]);
+          this.setRoute(result);
         } else {
           this.status = 'User is not found';
-          console.log(NOT_FOUND);
+          console.log(NOT_FOUND, result);
         }
       }
     );
@@ -68,14 +67,14 @@ export class LoginComponent implements OnInit {
         if (FOUND === result.code) {
           this.status = 'User is found';
           console.log(FOUND);
-          this.router.navigate(['dashboard/:', {id: result.access_token}]);
+          this.setRoute(result);
         } else if (CREATED === result.code) {
           this.status = 'User is created';
           console.log(CREATED);
-          this.router.navigate(['dashboard/:', {id: result.access_token}]);
+          this.setRoute(result);
         } else {
           this.status = 'User is not found';
-          console.log(NOT_FOUND);
+          console.log(NOT_FOUND, result);
         }
       }
     );
@@ -95,5 +94,23 @@ export class LoginComponent implements OnInit {
 
   onAutocompleteSelected(result) {
     console.log('onAutocompleteSelected: ', result);
+  }
+
+  onLocationSelected(result) {
+    console.log('onLocationSelected: ', result);
+    this.latitude = result.latitude;
+    this.longitude = result.longitude;
+  }
+
+  onGermanAddressMapped(result) {
+    console.log('onGermanAddressMapped: ', result);
+  }
+
+  setRoute(result) {
+    if (this.authService.isAdmin()) {
+      this.router.navigate(['admin/add']);
+    } else {
+      this.router.navigate(['dashboard/:', {id: result.access_token}]);
+    }
   }
 }

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {ProductPreview} from '../product/models/product-preview';
-import {Router} from '@angular/router';
-import {AuthService} from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,14 +9,11 @@ import {AuthService} from '../../auth/services/auth.service';
 })
 export class ProductListComponent implements OnInit {
 
-  isAuth = false;
   products = [];
+  info = [];
   styleCss: object = {'col-lg-3': true};
-  length = 0;
 
-  constructor(private productService: ProductService,
-              private authService: AuthService,
-              private route: Router) {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -26,20 +21,21 @@ export class ProductListComponent implements OnInit {
     this.productService.getAll().subscribe(
       products => {
         this.products = products;
+        this.info = [];
+        const sort = products.sort((p1, p2) => p2.love - p1.love);
+        for (let i = 0; i < sort.length; i++) {
+          const status = this.getStatus(i, sort[i]);
+          const color = this.getColor(status);
+          this.info.push({status, color, sort: sort[i].love, id: sort[i].id});
+        }
+        console.log('---------', this.products, this.info);
       },
       error => console.log(error)
     );
-    this.length = this.productService.getLength();
-    this.isAuth = this.authService.getStatus();
-  }
-
-  getStatus() {
-    return this.isAuth ? 'green' : 'red';
   }
 
   OnAdd(productPreview: ProductPreview) {
     this.productService.addToDashboard(productPreview);
-    this.length = this.productService.getLength();
   }
 
   onStyle(col: number) {
@@ -67,7 +63,60 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  onDashboard() {
-    this.route.navigate(['dashboard']);
+  getPrice(price) {
+    return 'à partir de ' + price.split('|')[0];
   }
+
+  addLove(product) {
+    console.log('after addLove:', product);
+    this.productService.addLove(product.id).then(value => {
+      console.log('addLove:', value);
+      product.love++;
+    });
+  }
+
+  addBad(product) {
+    console.log('after subLove:', product);
+    this.productService.addBad(product.id).then(value => {
+      console.log('subLove:', value);
+      product.bad++;
+    });
+  }
+
+  getStatus(position, product) {
+    let l = 'À découvrir';
+    switch (position) {
+      case 0:
+      case 1:
+      case 2:
+        l = 'Populaire';
+        break;
+    }
+    if (product.love === 0 && product.bad === 0 && product.buy === 0) {
+      l = 'Nouvelle';
+    }
+    return l;
+  }
+
+  getColor(status) {
+    switch (status) {
+      case 'À découvrir':
+        return 'orange';
+      case 'Populaire':
+        return 'green';
+      case 'Nouvelle':
+        return 'greenyellow';
+    }
+  }
+
+  getInfoStatus(id) {
+    const find = this.info.find(value => value.id === id);
+    return find ? find.status : '';
+  }
+
+  getInfoColor(id) {
+    const find = this.info.find(value => value.id === id);
+    return find ? find.color : '';
+  }
+
 }

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="col-lg-8">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>client</th>
+        <th>number</th>
+        <th>name</th>
+        <th>size</th>
+        <th>description</th>
+        <th>status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let command of commands">
+        <tr *ngFor="let p of command.idsProduct">
+          <td>{{command.name}}</td>
+          <td>{{command.number}}</td>
+          <td>{{p.product.name}}</td>
+          <td>{{p.product.size.split('|')[0]}}</td>
+          <td>{{p.product.description}}</td>
+          <td>
+            <mat-checkbox [checked]="p.product.status" (change)="isFinished(command,p)">finished</mat-checkbox>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-4">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Number of visitors</th>
+        <th>Number of commands</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{visitors}}</td>
+        <td>{{numbers}}</td>
+        <td>{{total}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

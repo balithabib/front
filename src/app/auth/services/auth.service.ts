@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AuthService {
   URL = 'http://localhost:3000/';
-  user: any = {code: 'NOT_FOUND', access_token: ''};
+  user: any = {code: 'NOT_FOUND', access_token: '', user: null};
   isAuth = false;
   image;
 
@@ -42,7 +42,7 @@ export class AuthService {
     return await new Promise(((resolve) => {
       this.httpClient.get(this.URL + 'background').subscribe(
         (val: any) => {
-          console.log('POST call successful value returned in body : ', val);
+          console.log('POST call successful value returned in body');
           this.image = val.data;
           resolve(this.image);
         },
@@ -72,5 +72,9 @@ export class AuthService {
 
   getStatus() {
     return this.isAuth;
+  }
+
+  isAdmin() {
+    return this.isAuth === true && this.user.user !== null && this.user.user.status === 'admin';
   }
 }

@@ -10,10 +10,10 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  authStatus: boolean;
+  authStatus: boolean = false;
   image;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -24,20 +24,3 @@ export class AuthComponent implements OnInit {
     );
   }
 }
-
-// to use.
-export const passwordMatchValidator = (controlNameToCompare: string): ValidatorFn | null => {
-  return (c: AbstractControl): ValidationErrors | null => {
-    if (c.value === null || c.value.length === 0) {
-      return null;
-    }
-    const controlToCompare = c.root.get(controlNameToCompare);
-    if (controlToCompare) {
-      const subscription: Subscription = controlToCompare.valueChanges.subscribe(() => {
-        c.updateValueAndValidity();
-        subscription.unsubscribe();
-      });
-    }
-    return controlToCompare && controlToCompare.value !== c.value ? {compare: true} : null;
-  };
-};

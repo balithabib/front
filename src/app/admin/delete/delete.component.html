@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="col-lg-3" *ngFor="let product of products;let status = false">
+    <mat-card>
+      <div class="productHeader">
+        <span class="productTitle">{{product.name}}</span>
+        <span class="productPrice"><p class="price">{{getPrice(product.price)}}</p></span>
+      </div>
+
+      <img mat-card-image
+           class="center"
+           [src]="'data:image/jpg;base64,'+product.images[0]">
+      <mat-card-actions class="center">
+        <button (click)="onDelete(product)" mat-mini-fab class="buttonRound">-</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

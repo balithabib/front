@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="col align-self-center">
+
+    <div class="example-container">
+      <h2>Update Pizza</h2>
+      <mat-label>Select Product</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let product of products" [value]="product.name" (click)="setSelect(product)">
+          {{product.name}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <hr>
+    <form class="example-container" [formGroup]="reactiveFormAdd" *ngIf="select">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Name" formControlName="name" value="{{oldProduct.name}}">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Type" formControlName="type" value="{{oldProduct.type}}">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Quantity" formControlName="quantity" value="{{oldProduct.quantity}}">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Description" formControlName="description" value="{{oldProduct.description}}">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field *ngFor="let size of sizes">
+        <label>
+          <input matInput placeholder="Price of {{size.name}}"
+                 formControlName="{{size.control}}"
+                 value="{{size.price}}">
+        </label>
+      </mat-form-field>
+
+
+      <label>
+        <input type="file" multiple accept="image/png, image/jpeg" (change)="setFiles($event.target.files)">
+      </label>
+
+      <mat-card-actions class="centerBtn">
+        <button type="submit" (click)="onUpdate()" [disabled]="reactiveFormAdd.invalid">Update</button>
+      </mat-card-actions>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+mat-card {
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  margin: 5px auto;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.img {
+  width: 50%;
+  height: 50%;
+}
+
+.square {
+  width: 100%;
+  height: 5px;
+  background: #069;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.btn_hidden {
+  visibility: hidden;
+}
+
+.btn_visible {
+  visibility: visible;
+}
+
+
+.card {
+  border: 1px solid #777777;
+  padding: 10%;
+}
+
+
+.text {
+  float: left;
+  word-break: break-word;
+}
+
+.name {
+  float: left;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.productPrice {
+  color: rgb(236, 0, 140) !important;
+  float: right;
+}
+
+.productTitle {
+  display: block;
+  float: left;
+  max-height: 20px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  font-family: VP Next, sans-serif;
+}
+
+.productHeader {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  min-height: 85px;
+}
+
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.product {
+  width: 50%;
+  height: 50%;
+}
+
+.buttonAuth:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 1em deeppink;
+}
+
+.buttonDashboard:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 1em purple;
+}
+
+.buttonRound:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 1em hotpink;
+}

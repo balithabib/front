@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="col align-self-center">
+    <form class="example-container" [formGroup]="reactiveFormAdd">
+      <h2>Add Pizza</h2>
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Name" formControlName="name">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Type" formControlName="type">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Quantity" formControlName="quantity">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Description" formControlName="description">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field *ngFor="let size of sizes">
+        <label>
+          <input matInput placeholder="Price of {{size.name}}" formControlName="{{size.control}}">
+        </label>
+      </mat-form-field>
+
+
+      <label>
+        <input type="file" multiple accept="image/png, image/jpeg" (change)="setFiles($event.target.files)">
+      </label>
+
+      <mat-card-actions class="centerBtn">
+        <button type="submit" (click)="onAdd()" [disabled]="reactiveFormAdd.invalid">Add</button>
+      </mat-card-actions>
+    </form>
+  </div>
+</div>

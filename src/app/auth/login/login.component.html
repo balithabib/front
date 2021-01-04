@@ -74,19 +74,16 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <mat-card>
-        <mat-card-title>Auto Parse Address</mat-card-title>
-        <mat-card-content>
-          <mat-search-google-maps-autocomplete appearance="outline"
-                                               country="de"
-                                               (onGermanAddressMapped)="onAutocompleteSelected($event)">
-          </mat-search-google-maps-autocomplete>
-        </mat-card-content>
-      </mat-card>
+      <div>
+        <label>status: </label>
+        <mat-radio-group formControlName="status">
+          <mat-radio-button value="user">User</mat-radio-button>
+          <mat-radio-button value="admin">Admin</mat-radio-button>
+        </mat-radio-group>
+      </div>
 
       <mat-card-actions class="centerBtn">
-        <button type="submit" (click)="onRegister()" [disabled]="reactiveFormRegister.invalid">Register
-        </button>
+        <button type="submit" (click)="onRegister()" [disabled]="reactiveFormRegister.invalid">Register</button>
       </mat-card-actions>
 
       <mat-card-footer>

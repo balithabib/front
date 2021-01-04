@@ -1,10 +1,14 @@
 export class ProductPreview {
   id: number;
-  stock: number;
   name: string;
-  color: string;
+  type: string;
+  size: string;
   price: string;
-  comment: string;
-  thumbnails: string;
+  quantity: number;
+  description: string;
+  images: string;
   amount: number;
+  love: number;
+  bad: number;
+  buy: number;
 }

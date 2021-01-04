@@ -10,17 +10,20 @@ import {ProductPreview} from './models/product-preview';
 })
 export class ProductComponent implements OnInit, OnDestroy {
   product: any = {
-    stock: 0,
     name: 'name',
     color: 'color',
     price: '0€00',
+    size: '',
     comment: [],
-    thumbnails: [],
+    images: [],
   };
   id: string;
   defaultImg: string;
   products: ProductPreview[];
+  ingredients: any;
+  description = [];
   navigationSubscription;
+  sizePrice = [];
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private  router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -35,7 +38,19 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
     this.productService.getById(this.id).then(value => {
       this.product = value;
-      this.defaultImg = this.product.thumbnails[0];
+      this.defaultImg = this.product.images[0];
+      if (this.description.length === 0) {
+        for (let i = 0; i < this.product.description.length; i++) {
+          this.description.push({ingredient: this.product.description[i], checked: true});
+        }
+      }
+      if (this.sizePrice.length === 0) {
+        const prices = this.product.price.split('|');
+        const sizes = this.product.size.split('|');
+        for (let i = 0; i < prices.length; i++) {
+          this.sizePrice.push({price: prices[i], size: sizes[i], checked: false});
+        }
+      }
     });
 
     this.productService.getAll().subscribe(
@@ -43,6 +58,12 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.products = products;
       },
       error => console.log(error)
+    );
+
+    this.productService.getAllIngredients().then((a: any) => {
+        this.ingredients = a;
+        console.log(a);
+      },
     );
   }
 
@@ -71,5 +92,33 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
+  }
+
+  OnAdd() {
+    const sizePrice: any = this.sizePrice.filter(value => value.checked);
+    const ingredients: any = this.ingredients.filter(value => value.checked);
+    const description: any = this.description.filter(value => value.checked);
+    console.log(sizePrice);
+    const product = {
+      id: this.product.id,
+      name: this.product.name,
+      type: this.product.type,
+      size: sizePrice[0].size,
+      price: sizePrice[0].price,
+      quantity: this.product.quantity,
+      ingredients: ingredients.concat(description),
+      images: this.product.images,
+      amount: 1,
+    };
+    console.log(product);
+    this.productService.addToDashboard(product);
+  }
+
+  onDashboard() {
+    this.router.navigate(['dashboard']);
+  }
+
+  setChange(a: any) {
+    a.checked = !a.checked;
   }
 }

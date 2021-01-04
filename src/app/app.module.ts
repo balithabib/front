@@ -6,10 +6,11 @@ import {RoutingModule} from './routing/routing.module';
 import {MaterialModule} from './material/material.module';
 import {AuthModule} from './auth/auth.module';
 import {ProductModule} from './product/product.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
-import { AgmCoreModule } from '@agm/core';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
+import {AgmCoreModule} from '@agm/core';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
     MaterialModule,
     AuthModule,
     ProductModule,
+    AdminModule,
     BrowserAnimationsModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot()

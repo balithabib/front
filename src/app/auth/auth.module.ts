@@ -10,7 +10,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {AgmCoreModule} from '@agm/core';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import * as Process from 'process';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent],
@@ -22,7 +21,7 @@ import * as Process from 'process';
     ReactiveFormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: Process.env.KEY_MAPS,
+      apiKey: 'AIzaSyBwRN5-igI8X_dJ0BTcFSq_-AGfAUqPwAo',
     }),
     MDBBootstrapModule.forRoot(),
     MatGoogleMapsAutocompleteModule

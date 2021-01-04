@@ -1,0 +1,15 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, .4);
+}
+
+.centerBtn {
+  justify-content: center;
+  margin: auto;
+}
+
+.center {
+  margin: auto;
+  justify-content: center;
+}
