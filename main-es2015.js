@@ -1458,7 +1458,7 @@ __webpack_require__.r(__webpack_exports__);
 let AuthService = class AuthService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.URL = 'http://176.158.237.187:9999/';
+        this.URL = 'http://localhost:3000/';
         this.user = { code: 'NOT_FOUND', access_token: '', user: null };
         this.isAuth = false;
     }
@@ -2196,7 +2196,7 @@ let ProductService = class ProductService {
     constructor(httpClient) {
         this.httpClient = httpClient;
         this.products = null;
-        this.URL = 'http://176.158.237.187:9999/product';
+        this.URL = 'http://localhost:3000/product';
         this.length = 0;
         this.selectedProducts = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]);
         this.selectedProducts$ = this.selectedProducts.asObservable();
@@ -2280,7 +2280,7 @@ let ProductService = class ProductService {
     }
     image(images, id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/image/all/' + id;
+            const url = 'http://localhost:3000/image/all/' + id;
             console.log(url);
             console.log('------', images);
             return yield new Promise((resolve) => {
@@ -2299,7 +2299,7 @@ let ProductService = class ProductService {
     }
     initProductRecommendation(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/set/' + id;
+            const url = 'http://localhost:3000/recommendation/set/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2371,7 +2371,7 @@ let ProductService = class ProductService {
     }
     sendCommand(command) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/command';
+            const url = 'http://localhost:3000/command';
             return yield new Promise((resolve) => {
                 this.httpClient.post(url, command)
                     .subscribe((val) => {
@@ -2388,7 +2388,7 @@ let ProductService = class ProductService {
     }
     getAllCommand() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/command';
+            const url = 'http://localhost:3000/command';
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
                     .subscribe((val) => {
@@ -2407,7 +2407,7 @@ let ProductService = class ProductService {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             command.status = true;
             command.idsProduct = [];
-            const url = 'http://176.158.237.187:9999/command/finished';
+            const url = 'http://localhost:3000/command/finished';
             return yield new Promise((resolve) => {
                 this.httpClient.post(url, command)
                     .subscribe((val) => {
@@ -2424,7 +2424,7 @@ let ProductService = class ProductService {
     }
     getOldCommand(user) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/command/user';
+            const url = 'http://localhost:3000/command/user';
             return yield new Promise((resolve) => {
                 this.httpClient.post(url, user)
                     .subscribe((val) => {
@@ -2456,7 +2456,7 @@ let ProductService = class ProductService {
     deleteCommand(idCommand, idProduct) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.deleteToDashboard(idProduct);
-            const url = 'http://176.158.237.187:9999/command/delete';
+            const url = 'http://localhost:3000/command/delete';
             const body = { idCommand: idCommand, idProduct: idProduct };
             return yield new Promise((resolve) => {
                 this.httpClient.post(url, body)
@@ -2474,7 +2474,7 @@ let ProductService = class ProductService {
     }
     getRecommendation(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/get/' + id;
+            const url = 'http://localhost:3000/recommendation/get/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2492,7 +2492,7 @@ let ProductService = class ProductService {
     }
     addLove(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/love_add/' + id;
+            const url = 'http://localhost:3000/recommendation/love_add/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2510,7 +2510,7 @@ let ProductService = class ProductService {
     }
     addBad(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/bad_add/' + id;
+            const url = 'http://localhost:3000/recommendation/bad_add/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2528,7 +2528,7 @@ let ProductService = class ProductService {
     }
     addBuy(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/buy_add/' + id;
+            const url = 'http://localhost:3000/recommendation/buy_add/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2546,7 +2546,7 @@ let ProductService = class ProductService {
     }
     subLove(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/love_sub/' + id;
+            const url = 'http://localhost:3000/recommendation/love_sub/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2564,7 +2564,7 @@ let ProductService = class ProductService {
     }
     subBad(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/bad_sub/' + id;
+            const url = 'http://localhost:3000/recommendation/bad_sub/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)
@@ -2582,7 +2582,7 @@ let ProductService = class ProductService {
     }
     subBuy(id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const url = 'http://176.158.237.187:9999/recommendation/buy_sub/' + id;
+            const url = 'http://localhost:3000/recommendation/buy_sub/' + id;
             console.log(url);
             return yield new Promise((resolve) => {
                 this.httpClient.get(url)

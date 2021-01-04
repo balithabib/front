@@ -2606,7 +2606,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _classCallCheck(this, AuthService);
 
         this.httpClient = httpClient;
-        this.URL = 'http://176.158.237.187:9999/';
+        this.URL = 'http://localhost:3000/';
         this.user = {
           code: 'NOT_FOUND',
           access_token: '',
@@ -3929,7 +3929,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         this.httpClient = httpClient;
         this.products = null;
-        this.URL = 'http://176.158.237.187:9999/product';
+        this.URL = 'http://localhost:3000/product';
         this.length = 0;
         this.selectedProducts = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]);
         this.selectedProducts$ = this.selectedProducts.asObservable();
@@ -4075,7 +4075,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context7.prev = _context7.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/image/all/' + id;
+                    url = 'http://localhost:3000/image/all/' + id;
                     console.log(url);
                     console.log('------', images);
                     _context7.next = 5;
@@ -4115,7 +4115,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context8.prev = _context8.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/set/' + id;
+                    url = 'http://localhost:3000/recommendation/set/' + id;
                     console.log(url);
                     _context8.next = 4;
                     return new Promise(function (resolve) {
@@ -4270,7 +4270,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context12.prev = _context12.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/command';
+                    url = 'http://localhost:3000/command';
                     _context12.next = 3;
                     return new Promise(function (resolve) {
                       _this30.httpClient.post(url, command).subscribe(function (val) {
@@ -4306,7 +4306,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context13.prev = _context13.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/command';
+                    url = 'http://localhost:3000/command';
                     _context13.next = 3;
                     return new Promise(function (resolve) {
                       _this31.httpClient.get(url).subscribe(function (val) {
@@ -4346,7 +4346,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 0:
                     command.status = true;
                     command.idsProduct = [];
-                    url = 'http://176.158.237.187:9999/command/finished';
+                    url = 'http://localhost:3000/command/finished';
                     _context14.next = 5;
                     return new Promise(function (resolve) {
                       _this32.httpClient.post(url, command).subscribe(function (val) {
@@ -4384,7 +4384,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context15.prev = _context15.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/command/user';
+                    url = 'http://localhost:3000/command/user';
                     _context15.next = 3;
                     return new Promise(function (resolve) {
                       _this33.httpClient.post(url, user).subscribe(function (val) {
@@ -4454,7 +4454,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 switch (_context16.prev = _context16.next) {
                   case 0:
                     this.deleteToDashboard(idProduct);
-                    url = 'http://176.158.237.187:9999/command/delete';
+                    url = 'http://localhost:3000/command/delete';
                     body = {
                       idCommand: idCommand,
                       idProduct: idProduct
@@ -4496,7 +4496,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context17.prev = _context17.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/get/' + id;
+                    url = 'http://localhost:3000/recommendation/get/' + id;
                     console.log(url);
                     _context17.next = 4;
                     return new Promise(function (resolve) {
@@ -4535,7 +4535,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context18.prev = _context18.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/love_add/' + id;
+                    url = 'http://localhost:3000/recommendation/love_add/' + id;
                     console.log(url);
                     _context18.next = 4;
                     return new Promise(function (resolve) {
@@ -4574,7 +4574,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context19.prev = _context19.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/bad_add/' + id;
+                    url = 'http://localhost:3000/recommendation/bad_add/' + id;
                     console.log(url);
                     _context19.next = 4;
                     return new Promise(function (resolve) {
@@ -4613,7 +4613,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context20.prev = _context20.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/buy_add/' + id;
+                    url = 'http://localhost:3000/recommendation/buy_add/' + id;
                     console.log(url);
                     _context20.next = 4;
                     return new Promise(function (resolve) {
@@ -4652,7 +4652,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context21.prev = _context21.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/love_sub/' + id;
+                    url = 'http://localhost:3000/recommendation/love_sub/' + id;
                     console.log(url);
                     _context21.next = 4;
                     return new Promise(function (resolve) {
@@ -4691,7 +4691,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context22.prev = _context22.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/bad_sub/' + id;
+                    url = 'http://localhost:3000/recommendation/bad_sub/' + id;
                     console.log(url);
                     _context22.next = 4;
                     return new Promise(function (resolve) {
@@ -4730,7 +4730,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context23.prev = _context23.next) {
                   case 0:
-                    url = 'http://176.158.237.187:9999/recommendation/buy_sub/' + id;
+                    url = 'http://localhost:3000/recommendation/buy_sub/' + id;
                     console.log(url);
                     _context23.next = 4;
                     return new Promise(function (resolve) {
